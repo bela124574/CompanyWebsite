@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects – Wegeret Construction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-bottom: 3px solid #ff9a3c;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff9a3c, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 154, 60, 0.3);
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: #f8f9fa;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 154, 60, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        nav a:hover::before {
+            left: 100%;
+        }
+
+        nav a:hover {
+            color: #ff9a3c;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 154, 60, 0.4);
+        }
+
+        .projects-section {
+            padding: 120px 5% 5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .projects-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .projects-header h1 {
+            font-size: 3.5rem;
+            color: #f8f9fa;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ff9a3c, #ff6b6b, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .projects-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, #ff9a3c, #ff6b6b);
+            border-radius: 5px;
+        }
+
+        /* Image Slider/Carousel Styles - UPDATED THEME */
+        .slider-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 25px;
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            border: 2px solid rgba(255, 154, 60, 0.3);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 450px;
+        }
+
+        .slide {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .slide-title {
+            font-size: 1.8rem;
+            color: #ff9a3c;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #ff6b6b;
+            width: 100%;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .slide-image {
+            width: 100%;
+            max-width: 700px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #ff9a3c, #ff6b6b, #4361ee);
+            border: 4px solid #f8f9fa;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .slide:hover .slide-image {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .slide-images-row {
+            display: flex;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 700px;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .slide-images-row img {
+            flex: 1;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid #f8f9fa;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .slide-images-row img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        /* Navigation Buttons - UPDATED */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 154, 60, 0.9);
+            color: #1a1a2e;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(255, 154, 60, 0.4);
+        }
+
+        .slider-btn:hover {
+            background: #ff6b6b;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
+        }
+
+        .prev-btn {
+            left: 20px;
+        }
+
+        .next-btn {
+            right: 20px;
+        }
+
+        /* Dots Indicator - UPDATED */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 154, 60, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .dot.active {
+            background: #ff9a3c;
+            transform: scale(1.4);
+            border-color: #ff6b6b;
+            box-shadow: 0 0 15px rgba(255, 154, 60, 0.6);
+        }
+
+        .dot:hover {
+            background: #ff6b6b;
+            transform: scale(1.2);
+        }
+
+        /* Project Info - UPDATED */
+        .project-info {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            color: #e9ecef;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1rem;
+            background: rgba(15, 52, 96, 0.3);
+            border-radius: 10px;
+            border-left: 3px solid #ff9a3c;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 154, 60, 0.8);
+            color: #1a1a2e;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Featured Projects Section */
+        .featured-projects {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 2px solid rgba(255, 154, 60, 0.3);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .featured-projects h2 {
+            text-align: center;
+            color: #ff9a3c;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+        }
+
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(15, 52, 96, 0.5);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 154, 60, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: #ff9a3c;
+            box-shadow: 0 10px 25px rgba(255, 154, 60, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ff9a3c;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #e9ecef;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .slider-container {
+                max-width: 95%;
+            }
+            
+            .projects-header h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+            
+            .projects-section {
+                padding: 140px 5% 3rem;
+            }
+            
+            .projects-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .slider-container {
+                padding: 1rem;
+            }
+            
+            .slider {
+                height: 400px;
+            }
+            
+            .slide-image {
+                height: 250px;
+            }
+            
+            .slide-images-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .slide-images-row img {
+                width: 100%;
+                max-width: 400px;
+                height: 180px;
+            }
+            
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .prev-btn {
+                left: 10px;
+            }
+            
+            .next-btn {
+                right: 10px;
+            }
+            
+            .project-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-header h1 {
+                font-size: 2rem;
+            }
+            
+            .slider {
+                height: 350px;
+            }
+            
+            .slide-image {
+                height: 200px;
+            }
+            
+            .project-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-item {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slider-container,
+        .featured-projects {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+    <script src="scrpit.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>WEGERET CONSTRUCTION PLC</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="project.html">Projects</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<section class="projects-section">
+    <div class="projects-header">
+        <h1>Our Projects Gallery</h1>
+    </div>
+    
+    <!-- Image Slider/Carousel -->
+    <div class="slider-container">
+        <div class="slider" id="slider">
+            <!-- Slide 1: Building Projects -->
+            <div class="slide">
+                <div class="slide-title">Building Projects</div>
+                <img src="buildig.jpg" alt="Building Construction Project" class="slide-image">
+                <div class="project-info">
+                    Modern building construction with innovative designs and sustainable materials.
+                </div>
+                <div class="slide-number">1 / 3</div>
+            </div>
+            
+            <!-- Slide 2: Road Projects -->
+            <div class="slide">
+                <div class="slide-title">Road Projects</div>
+                <img src="road.webp" alt="Road Construction Project" class="slide-image">
+                <div class="project-info">
+                    Highway and urban road construction projects across the region.
+                </div>
+                <div class="slide-number">2 / 3</div>
+            </div>
+            
+            <!-- Slide 3: Water Projects -->
+            <div class="slide">
+                <div class="slide-title">Water Projects</div>
+                <div class="slide-images-row">
+                    <img src="download (1).webp" alt="Water Project 1">
+                    <img src="download.webp" alt="Water Project 2">
+                </div>
+                <div class="project-info">
+                    Water supply and irrigation projects ensuring sustainable water management.
+                </div>
+                <div class="slide-number">3 / 3</div>
+            </div>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <button class="slider-btn prev-btn" id="prevBtn">❮</button>
+        <button class="slider-btn next-btn" id="nextBtn">❯</button>
+    </div>
+    
+    <!-- Dots Indicator -->
+    <div class="slider-dots" id="dotsContainer">
+        <div class="dot active" data-slide="0"></div>
+        <div class="dot" data-slide="1"></div>
+        <div class="dot" data-slide="2"></div>
+    </div>
+    
+    <!-- Featured Projects Stats -->
+    <div class="featured-projects">
+        <h2>Our Project Achievements</h2>
+        <div class="project-stats">
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Client Satisfaction</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Project Support</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Slider functionality
+    const slider = document.getElementById('slider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dots = document.querySelectorAll('.dot');
+    const slides = document.querySelectorAll('.slide');
+    
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    
+    // Update slide position
+    function updateSlider() {
+        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+        
+        // Update slide numbers
+        slides.forEach((slide, index) => {
+            const slideNumber = slide.querySelector('.slide-number');
+            if (slideNumber) {
+                slideNumber.textContent = `${index + 1} / ${totalSlides}`;
+            }
+        });
+    }
+    
+    // Next slide
+    nextBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+    });
+    
+    // Previous slide
+    prevBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    });
+    
+    // Dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentSlide = index;
+            updateSlider();
+        });
+    });
+    
+    // Auto slide (optional - uncomment to enable)
+    /*
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+    }, 5000); // Change slide every 5 seconds
+    */
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        } else if (e.key === 'ArrowRight') {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+    });
+    
+    // Initialize
+    updateSlider();
+</script>
+
+</body>
+</html>

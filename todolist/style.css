@@ -1,0 +1,159 @@
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+
+    background: linear-gradient(270deg, #003580, #0057b8, #667eea);
+    background-size: 600% 600%;
+    animation: gradientMove 12s ease infinite;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    background: rgba(0, 53, 128, 0.9);
+    color: white;
+    padding: 15px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(6px);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+
+nav button {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.6);
+    padding: 6px 14px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+nav button:hover {
+    background: white;
+    color: #003580;
+}
+
+
+.hero {
+    padding: 120px 40px 70px; /* space for fixed header */
+    color: white;
+}
+
+.hero h2 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+
+.task-bar {
+    background: rgba(255,255,255,0.95);
+    padding: 15px;
+    margin-top: 30px;
+    border-radius: 12px;
+
+    display: flex;
+    gap: 10px;
+    max-width: 700px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.task-bar input {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.task-bar button {
+    background: #0071c2;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.task-bar button:hover {
+    transform: translateY(-2px);
+}
+
+
+.main {
+    background: #f8f9fb;
+    padding: 40px;
+}
+
+
+ul {
+    list-style: none;
+    padding: 0;
+    max-width: 700px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+li.done span {
+    text-decoration: line-through;
+    color: gray;
+}
+
+
+footer {
+    margin-top: auto;
+    background: #003580;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+}

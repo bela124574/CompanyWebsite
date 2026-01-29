@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us – Wegeret Construction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-bottom: 3px solid #ff9a3c;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff9a3c, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 154, 60, 0.3);
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: #f8f9fa;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 154, 60, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        nav a:hover::before {
+            left: 100%;
+        }
+
+        nav a:hover {
+            color: #ff9a3c;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 154, 60, 0.4);
+        }
+
+        .about-section {
+            padding: 120px 5% 5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .about-header h2 {
+            font-size: 3.5rem;
+            color: #f8f9fa;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ff9a3c, #ff6b6b, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, #ff9a3c, #ff6b6b);
+            border-radius: 5px;
+        }
+
+        /* About Content Layout */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            align-items: start;
+        }
+
+        /* About Content */
+        .about-content {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 3rem;
+            border: 2px solid rgba(255, 154, 60, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #e9ecef;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        .about-content b {
+            color: #ff9a3c;
+            font-weight: 700;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mission-box, .vision-box {
+            background: linear-gradient(135deg, rgba(255, 154, 60, 0.1), rgba(255, 107, 107, 0.1));
+            border-radius: 15px;
+            padding: 2.5rem;
+            border-left: 4px solid #ff9a3c;
+            box-shadow: inset 0 0 20px rgba(255, 154, 60, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .mission-box:hover, .vision-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 154, 60, 0.2),
+                        inset 0 0 20px rgba(255, 154, 60, 0.15);
+        }
+
+        .mission-box h3, .vision-box h3 {
+            color: #ff9a3c;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mission-box p, .vision-box p {
+            color: #e9ecef;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* About Image */
+        .about-image {
+            position: relative;
+            height: fit-content;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 450px;
+            border-radius: 20px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #ff9a3c, #ff6b6b, #4361ee);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4),
+                        0 0 0 5px rgba(255, 154, 60, 0.2);
+            border: 4px solid #f8f9fa;
+            transition: all 0.5s ease;
+        }
+
+        .about-image img:hover {
+            transform: perspective(1000px) rotateY(5deg) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5),
+                        0 0 0 5px rgba(255, 154, 60, 0.3);
+        }
+
+        /* Values Section */
+        .values-section {
+            background: rgba(15, 52, 96, 0.5);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-top: 4rem;
+            border: 2px solid rgba(255, 154, 60, 0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .values-section h3 {
+            text-align: center;
+            color: #ff9a3c;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 154, 60, 0.1);
+            box-shadow: 0 10px 25px rgba(255, 154, 60, 0.2);
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, #ff9a3c, #ff6b6b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #1a1a2e;
+            box-shadow: 0 8px 20px rgba(255, 154, 60, 0.3);
+            border: 3px solid #f8f9fa;
+        }
+
+        .value-item h4 {
+            color: #ff9a3c;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .value-item p {
+            color: #e9ecef;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .about-image img {
+                height: 350px;
+            }
+            
+            .about-header h2 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+            
+            .about-section {
+                padding: 140px 5% 3rem;
+            }
+            
+            .about-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                padding: 2rem;
+            }
+            
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-header h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content p {
+                font-size: 1.1rem;
+            }
+            
+            .mission-box, .vision-box {
+                padding: 2rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-container > *,
+        .mission-vision > *,
+        .values-grid > * {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+    <script src="scrpit.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>WEGERET CONSTRUCTION PLC</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="project.html">Projects</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<section class="about-section">
+    <div class="about-header">
+        <h2>About Us</h2>
+    </div>
+    
+    <div class="about-container">
+        <div class="about-content">
+            <p><b>Wegeret Construction PLC</b> is a professional construction company committed to delivering high-quality building, road, and water infrastructure projects. With a strong focus on <b>engineering excellence, safety, and client satisfaction</b>, the company has built a solid reputation through reliable project execution and innovative construction solutions.</p>
+            
+            <p>Our team of skilled professionals combines expertise, modern technology, and meticulous attention to detail to ensure every project is completed on time and to the highest standards. At Wegeret Construction, we value <b>integrity, client satisfaction, and long-term partnerships</b>, making us a reliable choice for turning visions into reality.</p>
+            
+            <div class="mission-vision">
+                <div class="mission-box">
+                    <h3>🏗️ Our Mission</h3>
+                    <p>To deliver exceptional construction services through innovation, quality workmanship, and unwavering commitment to safety and client satisfaction.</p>
+                </div>
+                
+                <div class="vision-box">
+                    <h3>👁️ Our Vision</h3>
+                    <p>To be the leading construction company recognized for excellence, reliability, and sustainable development in infrastructure projects.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="about-image">
+            <img src="OIP.jpg" alt="Wegeret Construction Team">
+        </div>
+    </div>
+    
+    <div class="values-section">
+        <h3>Our Core Values</h3>
+        <div class="values-grid">
+            <div class="value-item">
+                <div class="value-icon">✓</div>
+                <h4>Quality</h4>
+                <p>Uncompromising commitment to excellence in every project we undertake.</p>
+            </div>
+            
+            <div class="value-item">
+                <div class="value-icon">🛡️</div>
+                <h4>Safety</h4>
+                <p>Highest safety standards to protect our team, clients, and communities.</p>
+            </div>
+            
+            <div class="value-item">
+                <div class="value-icon">⏱️</div>
+                <h4>Timeliness</h4>
+                <p>Delivering projects on schedule with efficient project management.</p>
+            </div>
+            
+            <div class="value-item">
+                <div class="value-icon">🤝</div>
+                <h4>Integrity</h4>
+                <p>Honest, transparent, and ethical business practices in all dealings.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
