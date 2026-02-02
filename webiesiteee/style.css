@@ -20,6 +20,7 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+/* ==================== FIXED HEADER ==================== */
 header {
     background: rgba(26, 26, 46, 0.95);
     backdrop-filter: blur(10px);
@@ -34,21 +35,50 @@ header {
     z-index: 1000;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     border-bottom: 3px solid #ff9a3c;
-    header {
-    /* Your existing styles */
-    min-height: 80px; /* Add this line */
+    min-height: 80px; /* FIX: Prevents header from collapsing */
+}
+/* ===== MOBILE MENU ICON ===== */
+.menu-icon {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ff9a3c;
+    user-select: none;
 }
 
-.logo h1 {
-    /* Your existing styles */
-    white-space: nowrap; /* Add this line */
-}
+/* ===== MOBILE NAVIGATION ===== */
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(26, 26, 46, 0.98);
+        padding: 1rem 0;
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+
+    nav.active {
+        display: flex;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+        font-size: 1rem;
+    }
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 15px;
+    min-width: 200px; /* FIX: Prevents logo from shrinking too much */
 }
 
 .logo h1 {
@@ -58,6 +88,7 @@ header {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 2px 10px rgba(255, 154, 60, 0.3);
+    white-space: nowrap; /* FIX: Prevents text from wrapping */
 }
 
 .logo img {
@@ -69,11 +100,15 @@ header {
     padding: 5px;
     border: 3px solid #f8f9fa;
     box-shadow: 0 0 20px rgba(255, 154, 60, 0.5);
+    flex-shrink: 0; /* FIX: Prevents image from shrinking */
 }
 
 nav {
     display: flex;
     gap: 2.5rem;
+    flex-wrap: wrap; /* FIX: Allows navigation to wrap */
+    justify-content: flex-end;
+    align-items: center;
 }
 
 nav a {
@@ -86,6 +121,7 @@ nav a {
     border-radius: 25px;
     position: relative;
     overflow: hidden;
+    white-space: nowrap; /* FIX: Prevents link text from wrapping */
 }
 
 nav a::before {
@@ -109,6 +145,7 @@ nav a:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(255, 154, 60, 0.4);
 }
+/* ==================== END FIXED HEADER ==================== */
 
 /* Clearer Hero Section */
 .hero {
@@ -667,7 +704,7 @@ footer::before {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive Design */
+/* ==================== UPDATED RESPONSIVE DESIGN ==================== */
 @media (max-width: 1200px) {
     .section h2 {
         font-size: 3rem;
@@ -705,19 +742,64 @@ footer::before {
     .project-gallery {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
-}
-
-@media (max-width: 768px) {
+    
+    /* FIX: Medium screen header adjustments */
     header {
-        flex-direction: column;
-        padding: 1.5rem;
-        gap: 1.5rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0.8rem 5%;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo img {
+        width: 60px;
+        height: 60px;
     }
     
     nav {
-        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    nav a {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* FIX: Mobile header - stack vertically */
+    header {
+        flex-direction: column;
+        padding: 1rem 5%;
+        gap: 1rem;
+        min-height: auto;
+    }
+    
+    .logo {
+        min-width: auto;
         justify-content: center;
-        gap: 1.5rem;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .logo h1 {
+        font-size: 1.4rem;
+    }
+    
+    nav {
+        justify-content: center;
+        width: 100%;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+    }
+    
+    nav a {
+        font-size: 0.9rem;
+        padding: 5px 10px;
     }
     
     .hero h2 {
@@ -752,6 +834,29 @@ footer::before {
 }
 
 @media (max-width: 480px) {
+    /* FIX: Very small screens */
+    header {
+        padding: 0.8rem 3%;
+    }
+    
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+    
+    .logo img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    nav {
+        gap: 0.5rem;
+    }
+    
+    nav a {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+    
     .hero h2 {
         font-size: 2rem;
     }
@@ -779,7 +884,9 @@ footer::before {
     }
 }
 
-/* Scroll animation */
+    
+
+
 @keyframes fadeInUp {
     from {
         opacity: 0;

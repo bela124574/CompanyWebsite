@@ -34,7 +34,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         message: document.getElementById('message').value
     };
     
-    // Simulate form submission
+    // Simulate form submissionz
     const status = document.getElementById('formStatus');
     status.textContent = 'Sending message...';
     status.style.color = '#3498db';
@@ -55,3 +55,6 @@ window.addEventListener('scroll', function() {
         header.style.background = '#2c3e50';
     }
 });
+function toggleMenu() {
+    document.getElementById("nav").classList.toggle("active");
+}

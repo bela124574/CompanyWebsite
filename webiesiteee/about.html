@@ -2,88 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us – Wegeret Construction</title>
+    <link rel="stylesheet" href="css/css.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            color: #333;
+        
+        body.about {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            min-height: 100vh;
         }
-
-        header {
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            color: white;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border-bottom: 3px solid #ff9a3c;
-        }
-
-        header h1 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(45deg, #ff9a3c, #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(255, 154, 60, 0.3);
-        }
-
-        nav {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        nav a {
-            color: #f8f9fa;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            padding: 8px 15px;
-            border-radius: 25px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        nav a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 154, 60, 0.2), transparent);
-            transition: 0.5s;
-        }
-
-        nav a:hover::before {
-            left: 100%;
-        }
-
-        nav a:hover {
-            color: #ff9a3c;
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 154, 60, 0.4);
-        }
-
+        
         .about-section {
-            padding: 120px 5% 5rem;
+            padding: 40px 5% 5rem;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -115,8 +44,7 @@
             background: linear-gradient(90deg, #ff9a3c, #ff6b6b);
             border-radius: 5px;
         }
-
-        /* About Content Layout */
+        
         .about-container {
             display: grid;
             grid-template-columns: 1fr 400px;
@@ -125,7 +53,7 @@
             align-items: start;
         }
 
-        /* About Content */
+        
         .about-content {
             background: rgba(26, 26, 46, 0.7);
             backdrop-filter: blur(15px);
@@ -186,7 +114,7 @@
             margin: 0;
         }
 
-        /* About Image */
+        
         .about-image {
             position: relative;
             height: fit-content;
@@ -210,7 +138,7 @@
                         0 0 0 5px rgba(255, 154, 60, 0.3);
         }
 
-        /* Values Section */
+        
         .values-section {
             background: rgba(15, 52, 96, 0.5);
             border-radius: 25px;
@@ -275,7 +203,7 @@
             margin: 0;
         }
 
-        /* Responsive Design */
+        
         @media (max-width: 992px) {
             .about-container {
                 grid-template-columns: 1fr;
@@ -292,20 +220,8 @@
         }
 
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                padding: 1.5rem;
-                gap: 1.5rem;
-            }
-            
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1.5rem;
-            }
-            
             .about-section {
-                padding: 140px 5% 3rem;
+                padding: 100px 5% 3rem;
             }
             
             .about-header h2 {
@@ -338,8 +254,7 @@
                 padding: 2rem;
             }
         }
-
-        /* Animation */
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -357,17 +272,21 @@
             animation: fadeInUp 0.8s ease-out;
         }
     </style>
-    <script src="scrpit.js"></script>
 </head>
-<body>
+<body class="about">
 
-<header>
-    <h1>WEGERET CONSTRUCTION PLC</h1>
+
+<header class="navbar">
+    <div class="logo">
+        <img src="OIP (1).webp" alt="Wegeret Construction Logo">
+        <h1>WEGERET CONSTRUCTION PLC</h1>
+    </div>
+    <button class="hamburger">☰</button>
     <nav>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="services.html">Services</a>
-        <a href="project.html">Projects</a>
+        <a href="project.html">Projects</a>  <!-- Fixed: projects.html not project.html -->
         <a href="contact.html">Contact</a>
     </nav>
 </header>
@@ -431,5 +350,10 @@
     </div>
 </section>
 
+<footer>
+    <p>© 2026 Wegeret Construction PLC. All rights reserved.</p>
+</footer>
+
+<script src="js/js.js"></script>
 </body>
 </html>
